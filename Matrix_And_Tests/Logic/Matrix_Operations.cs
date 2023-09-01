@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Matrix_And_Tests
 {
@@ -34,6 +35,7 @@ namespace Matrix_And_Tests
             {
                 int[] o;
                 int[] s;
+                int d = reader.Matrix_One.Values.Count;
                 reader.Matrix_One.TryGetValue(i, out o);
                 reader.Matrix_Two.TryGetValue(i, out s);
 
@@ -59,7 +61,71 @@ namespace Matrix_And_Tests
             Compare(log);
             if (isEqual)
             {
-
+                for (int i = 0; i < reader.Matrix_One.Keys.Count; i++)
+                {
+                    int[] one;
+                    int[] sec;
+                    reader.Matrix_One.TryGetValue(i, out one);
+                    reader.Matrix_Two.TryGetValue(i, out sec);
+                    int[] result = new int[one.Length];
+                    for (int j = 0; j < one.Length; j++)
+                    {
+                        result[j] = one[j] + sec[j];
+                    }
+                    matrix_Result.Add(i,result);
+                }
+                foreach (var item in matrix_Result.Values)
+                {
+                    log.Text += string.Join(",", item) + Environment.NewLine;
+                }
+            }
+        }
+        public void Matrix_Distinct(TextBlock log)
+        {
+            Compare(log);
+            if (isEqual)
+            {
+                for (int i = 0; i < reader.Matrix_One.Keys.Count; i++)
+                {
+                    int[] one;
+                    int[] sec;
+                    reader.Matrix_One.TryGetValue(i, out one);
+                    reader.Matrix_Two.TryGetValue(i, out sec);
+                    int[] result = new int[one.Length];
+                    for (int j = 0; j < one.Length; j++)
+                    {
+                        result[j] = one[j] - sec[j];
+                    }
+                    matrix_Result.Add(i, result);
+                }
+                foreach (var item in matrix_Result.Values)
+                {
+                    log.Text += string.Join(",", item) + Environment.NewLine;
+                }
+            }
+        }
+        public void Matrix_Mult(TextBlock log)
+        {
+            Compare(log);
+            if (isEqual)
+            {
+                for (int i = 0; i < reader.Matrix_One.Keys.Count; i++)
+                {
+                    int[] one;
+                    int[] sec;
+                    reader.Matrix_One.TryGetValue(i, out one);
+                    reader.Matrix_Two.TryGetValue(i, out sec);
+                    int[] result = new int[one.Length];
+                    for (int j = 0; j < one.Length; j++)
+                    {
+                        result[j] = one[j] * sec[j];
+                    }
+                    matrix_Result.Add(i, result);
+                }
+                foreach (var item in matrix_Result.Values)
+                {
+                    log.Text += string.Join(",", item) + Environment.NewLine;
+                }
             }
         }
     }
