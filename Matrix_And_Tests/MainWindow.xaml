@@ -10,6 +10,7 @@
         <TextBox x:Name="TextBox_M1" AcceptsReturn="True" HorizontalAlignment="Left" Margin="91,129,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="150" Height="88"/>
         <TextBlock x:Name="Text_Block_Error" HorizontalAlignment="Left" Margin="258,288,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="92" Width="274"/>
         <Button x:Name="Button_Do_Something" Content="Button" HorizontalAlignment="Left" Margin="360,203,0,0" VerticalAlignment="Top" Height="57" Width="70" Click="Button_Do_Something_Click"/>
+        <TextBox x:Name="TextBox_M2" AcceptsReturn="True" HorizontalAlignment="Left" Margin="578,114,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="173" Height="103"/>
 
     </Grid>
 </Window>

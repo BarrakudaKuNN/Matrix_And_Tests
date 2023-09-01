@@ -22,6 +22,7 @@ namespace Matrix_And_Tests.Logic.Tests
             TextBox textBox = new TextBox();
             textBox.Text = "1,2,3" + Environment.NewLine + "2,3,4";
             TextBlock textBlock = new TextBlock();
+            textBlock.Text = "";
             Matrix_Reader matrix_Reader = new Matrix_Reader();
 
             //act
@@ -34,21 +35,20 @@ namespace Matrix_And_Tests.Logic.Tests
             CollectionAssert.AreEqual(new int[] { 2, 3, 4 }, value2);
         }
         [TestMethod()]
-        public void ReadTestShoud_Work_With_Exeption()
+        public void ReadTestShoud_Show_Exeption()
         {
             //arrange
             TextBox textBox = new TextBox();
-            textBox.Text = "1,2,3" + Environment.NewLine + "2,3,4,,ew4,4";
+            textBox.Text = "Еуч" + Environment.NewLine + "2,3,4,,ew4,4";
             TextBlock textBlock = new TextBlock();
             Matrix_Reader matrix_Reader = new Matrix_Reader();
+            textBlock.Text = textBox.Text;
 
             //act
             matrix_Reader.Read(textBox, textBlock);
-
             //assert
-            Assert.AreEqual(2, matrix_Reader.Matrix_One);
-            CollectionAssert.AreEqual(new int[] { 1, 2, 3 }, matrix_Reader.Matrix_One);
-            CollectionAssert.AreEqual(new int[] { 4, 5, 6 }, matrix_Reader.Matrix_One);
+            Assert.AreNotEqual(textBlock.Text, textBox.Text);
+            //"Input string was not in a correct format."
         }
     }
 }

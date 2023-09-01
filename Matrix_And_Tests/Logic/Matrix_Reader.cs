@@ -11,11 +11,12 @@ namespace Matrix_And_Tests.Logic
     public class Matrix_Reader
     {
         private Dictionary<int, int[]> matrix_One = new Dictionary<int, int[]>();
-        Dictionary<int, int[]> matrix_Two = new Dictionary<int, int[]>();
+        private Dictionary<int, int[]> matrix_Two = new Dictionary<int, int[]>();
 
         public Dictionary<int, int[]> Matrix_One { get => matrix_One; set => matrix_One = value; }
+        public Dictionary<int, int[]> Matrix_Two { get => matrix_Two; set => matrix_Two = value; }
 
-        public void Read(TextBox text, TextBlock log)
+        public void Read(TextBox text, TextBlock log, Dictionary<int, int[]> dic)
         {
             try
             {
@@ -33,7 +34,7 @@ namespace Matrix_And_Tests.Logic
                     {
                         numbers[j] = int.Parse(str[j]);
                     }
-                    Matrix_One.Add(i, numbers);
+                    dic.Add(i, numbers);
                 }
 
             }
