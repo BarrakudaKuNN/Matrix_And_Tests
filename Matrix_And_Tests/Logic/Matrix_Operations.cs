@@ -57,7 +57,10 @@ namespace Matrix_And_Tests
         public void Matrix_Sum(TextBlock log)
         {
             Compare(log);
-            
+            if (isEqual)
+            {
+
+            }
         }
     }
 }

@@ -26,7 +26,7 @@ namespace Matrix_And_Tests.Logic.Tests
             Matrix_Reader matrix_Reader = new Matrix_Reader();
 
             //act
-            matrix_Reader.Read(textBox, textBlock);
+            matrix_Reader.Read(textBox, textBlock,matrix_Reader.Matrix_One);
 
             //assert
             Assert.IsTrue(matrix_Reader.Matrix_One.TryGetValue(0, out int[] value));
@@ -45,7 +45,7 @@ namespace Matrix_And_Tests.Logic.Tests
             textBlock.Text = textBox.Text;
 
             //act
-            matrix_Reader.Read(textBox, textBlock);
+            matrix_Reader.Read(textBox, textBlock, matrix_Reader.Matrix_One);
             //assert
             Assert.AreNotEqual(textBlock.Text, textBox.Text);
             //"Input string was not in a correct format."
