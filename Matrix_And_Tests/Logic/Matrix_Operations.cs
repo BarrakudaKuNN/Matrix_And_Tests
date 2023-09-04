@@ -81,7 +81,7 @@ namespace Matrix_And_Tests
                 }
                 foreach (var item in matrix_Result.Values)
                 {
-                    log.Text += string.Join(",", item) + Environment.NewLine;
+                    log.Text += Environment.NewLine + string.Join(",", item);
                 }
             }
         }
@@ -105,7 +105,7 @@ namespace Matrix_And_Tests
                 }
                 foreach (var item in matrix_Result.Values)
                 {
-                    log.Text += string.Join(",", item) + Environment.NewLine;
+                    log.Text += Environment.NewLine + string.Join(",", item);
                 }
             }
         }
@@ -129,9 +129,16 @@ namespace Matrix_And_Tests
                 }
                 foreach (var item in matrix_Result.Values)
                 {
-                    log.Text += string.Join(",", item) + Environment.NewLine;
+                    log.Text += Environment.NewLine+ string.Join(",", item) ;
                 }
             }
+        }
+
+        public void Clear()
+        {
+            reader.Matrix_One.Clear();
+            reader.Matrix_Two.Clear();
+            matrix_Result.Clear();
         }
     }
 }

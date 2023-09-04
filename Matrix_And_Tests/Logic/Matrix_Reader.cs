@@ -42,11 +42,14 @@ namespace Matrix_And_Tests.Logic
             {
                 log.Text=ex.Message;
             }
-
+            int[,] matrix = new int[,] 
+            {
+                    {1, -2, 3},
+                    {-4, 5, 6},
+                     {7, 8, -9},
+                     {9, 10, 11},
+                     {2,3,4},
+            };
         }
-        //foreach (var item in matrix_One.Values)
-        //{
-        //    log.Text += string.Join(",", item) +Environment.NewLine;
-        //}
     }
 }
