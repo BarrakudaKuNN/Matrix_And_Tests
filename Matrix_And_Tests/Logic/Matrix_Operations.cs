@@ -30,7 +30,7 @@ namespace Matrix_And_Tests
         // Dont forget to change for private after tests
         void Compare(TextBlock text)
         {
-           
+
             if (reader.Matrix_One.GetLength(0) == reader.Matrix_Two.GetLength(0) && reader.Matrix_One.GetLength(1) == reader.Matrix_Two.GetLength(1))
             {
                 text.Text = "Матрицы равны";
@@ -41,7 +41,7 @@ namespace Matrix_And_Tests
                 text.Text = "Матрицы не равны";
                 isEqual = false;
             }
-            
+
         }
 
         public void Matrix_Sum(TextBlock log)
