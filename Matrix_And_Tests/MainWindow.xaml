@@ -7,6 +7,14 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <TextBox x:Name="TextBox_M1" AcceptsReturn="True" HorizontalAlignment="Left" Margin="115,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" Height="88"/>
+        <TextBlock x:Name="Text_Block_Error" HorizontalAlignment="Left" Margin="318,257,0,0" TextWrapping="Wrap" Text="Результат будет тут" VerticalAlignment="Top" Height="84" Width="262"/>
+        <TextBox x:Name="TextBox_M2" AcceptsReturn="True" HorizontalAlignment="Left" Margin="508,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144" Height="88"/>
+        <TextBlock HorizontalAlignment="Left" Margin="146,188,0,0" TextWrapping="Wrap" Text="Матрица-1" VerticalAlignment="Top" Height="21" Width="88" FontSize="16" FontWeight="Bold"/>
+        <TextBlock HorizontalAlignment="Left" Margin="536,188,0,0" TextWrapping="Wrap" Text="Матрица-2" VerticalAlignment="Top" Height="21" Width="88" FontSize="16" FontWeight="Bold"/>
+        <Button x:Name="Button_Plus" Content="+" HorizontalAlignment="Left" Margin="374,86,0,0" VerticalAlignment="Top" Width="30" FontWeight="Bold" FontSize="16" Click="Button_Plus_Click"/>
+        <Button x:Name="Button_Minus" Content="-" HorizontalAlignment="Left" Margin="374,117,0,0" VerticalAlignment="Top" Width="30" FontWeight="Bold" FontSize="16" Click="Button_Minus_Click"/>
+        <Button x:Name="Button_Multy" Content="*" HorizontalAlignment="Left" Margin="374,149,0,0" VerticalAlignment="Top" Width="30" FontWeight="Bold" FontSize="16" Click="Button_Multy_Click"/>
+
     </Grid>
 </Window>
