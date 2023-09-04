@@ -22,17 +22,17 @@ namespace Matrix_And_Tests.Logic.Tests
             TextBox textBox1 = new TextBox();
             TextBox textBox2 = new TextBox();
             textBox1.Text = "1,2,3" + Environment.NewLine + "2,3,4";
-            textBox2.Text = "1,2,3" + Environment.NewLine + "2,3,u";
+            textBox2.Text = "1,2,3" + Environment.NewLine + "2,3,4";
             TextBlock textBlock = new TextBlock();
             textBlock.Text = "";
             Matrix_Reader matrix_Reader = new Matrix_Reader();
 
             //act
-            //matrix_Reader.Read(textBox1, textBlock, matrix_Reader.Matrix_One);
-            //matrix_Reader.Read(textBox2, textBlock, matrix_Reader.Matrix_Two);
+            matrix_Reader.Read(textBox1, textBlock, ref matrix_Reader.matrix_One);
+            matrix_Reader.Read(textBox2, textBlock, ref matrix_Reader.matrix_Two);
             //assert
-
-            Assert.AreEqual(" ",textBlock.Text);
+            //Ignoring Ui Show, we care only about results
+            Assert.AreEqual("1 2 3 \n2 3 4 \n1 2 3 \n2 3 4", textBlock.Text);
             
         }
         [TestMethod()]
@@ -42,13 +42,14 @@ namespace Matrix_And_Tests.Logic.Tests
             TextBox textBox = new TextBox();
             textBox.Text = "Еуч" + Environment.NewLine + "2,3,4,,ew4,4";
             TextBlock textBlock = new TextBlock();
+            textBlock.Text = "";
             Matrix_Reader matrix_Reader = new Matrix_Reader();
-            textBlock.Text = textBox.Text;
 
             //act
-            //matrix_Reader.Read(textBox, textBlock, matrix_Reader.Matrix_One);
+            matrix_Reader.Read(textBox, textBlock, ref matrix_Reader.matrix_One);
             //assert
-            Assert.AreNotEqual(textBlock.Text, textBox.Text);
+           
+            Assert.ThrowsException<FormatException>(()=>matrix_Reader.Read (textBox, textBlock, ref matrix_Reader.matrix_One));
             //"Input string was not in a correct format."
         }
     }

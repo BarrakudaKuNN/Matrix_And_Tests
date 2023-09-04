@@ -10,7 +10,7 @@ using System.Windows.Media;
 namespace Matrix_And_Tests.Logic
 {
     // не забыть поменять уровень доступа  класса
-    public class Matrix_Reader
+    internal class Matrix_Reader
     {
         public int[,] matrix_One;
         public int[,] matrix_Two;
@@ -18,10 +18,11 @@ namespace Matrix_And_Tests.Logic
         public int[,] Matrix_Two { get => matrix_Two; }
         public int[,] Matrix_One { get => matrix_One; }
 
+        bool rightInput = false;
+
         public void Read(TextBox text, TextBlock log, ref int[,] mat)
         {
-            try
-            {
+
                 string[] rows = text.Text.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
                 string[] col = rows[0].Split(',');
 
@@ -35,8 +36,9 @@ namespace Matrix_And_Tests.Logic
                         result[i, j] = int.Parse(str[j]);
                     }
                 }
-                mat = new int[rows.Length,col.Length];
+
                 mat = result;
+                rightInput = true;
                 for (int i = 0; i < mat.GetLength(0); i++)
                 {
                     for (int j = 0; j < mat.GetLength(1); j++)
@@ -46,12 +48,7 @@ namespace Matrix_And_Tests.Logic
                     log.Text+=Environment.NewLine;
                 }
 
-            }
-            catch(Exception ex)
-            {
-                log.Text=ex.Message;
-                
-            }
+            
         }
     }
 }
