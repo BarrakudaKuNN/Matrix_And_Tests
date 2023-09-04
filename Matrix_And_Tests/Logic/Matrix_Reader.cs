@@ -43,7 +43,6 @@ namespace Matrix_And_Tests.Logic
                 log.Text=ex.Message;
             }
 
-           
         }
         //foreach (var item in matrix_One.Values)
         //{

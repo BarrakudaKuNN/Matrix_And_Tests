@@ -23,11 +23,12 @@ namespace Matrix_And_Tests
             this.reader = reader;
         }
 
-        bool isEqual;
-        void Compare(TextBlock text)
+       public bool isEqual;
+        // Dont forget to change for private after tests
+        public void Compare(TextBlock text)
         {
            
-            if (reader.Matrix_One.Keys.Count != reader.Matrix_Two.Count)
+            if (reader.Matrix_One.Keys.Count == reader.Matrix_Two.Keys.Count)
             {
                 for (int i = 0; i < reader.Matrix_One.Keys.Count; i++)
                 {

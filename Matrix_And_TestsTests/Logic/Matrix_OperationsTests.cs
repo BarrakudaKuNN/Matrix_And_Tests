@@ -146,5 +146,28 @@ namespace Matrix_And_Tests.Tests
             ///Ignore Line building 
             Assert.AreEqual("1,4,9,16 1,4,9,16", text.Text);
         }
+
+        [TestMethod()]
+        public void CompareTest()
+        {
+            ///Arrange
+            TextBlock text = new TextBlock();
+            Matrix_Reader reader = new Matrix_Reader();
+            reader.Matrix_One = new Dictionary<int, int[]>();
+            reader.Matrix_One.Add(0, new int[] { 1, 2, 3, 4 });
+            reader.Matrix_One.Add(1, new int[] { 1, 2, 3 });
+            reader.Matrix_Two = new Dictionary<int, int[]>();
+            reader.Matrix_Two.Add(0, new int[] { 1, 2, 3, 4 });
+            reader.Matrix_Two.Add(1, new int[] { 1, 2, 3, 4 });
+
+            Matrix_Operations operations = new Matrix_Operations(reader);
+            
+            //act
+            operations.Compare(text);
+
+            //Assert
+            // Просто смотрим на резульаты выводимые в text.Text Подставляемв разные входные параметры и смотрим на результат
+            Assert.AreEqual("",text.Text);
+        }
     }
 }
