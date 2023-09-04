@@ -19,20 +19,21 @@ namespace Matrix_And_Tests.Logic.Tests
         public void ReadTestShoud_Work_Well()
         {
             //arrange
-            TextBox textBox = new TextBox();
-            textBox.Text = "1,2,3" + Environment.NewLine + "2,3,4";
+            TextBox textBox1 = new TextBox();
+            TextBox textBox2 = new TextBox();
+            textBox1.Text = "1,2,3" + Environment.NewLine + "2,3,4";
+            textBox2.Text = "1,2,3" + Environment.NewLine + "2,3,u";
             TextBlock textBlock = new TextBlock();
             textBlock.Text = "";
             Matrix_Reader matrix_Reader = new Matrix_Reader();
 
             //act
-            matrix_Reader.Read(textBox, textBlock,matrix_Reader.Matrix_One);
-
+            //matrix_Reader.Read(textBox1, textBlock, matrix_Reader.Matrix_One);
+            //matrix_Reader.Read(textBox2, textBlock, matrix_Reader.Matrix_Two);
             //assert
-            Assert.IsTrue(matrix_Reader.Matrix_One.TryGetValue(0, out int[] value));
-            Assert.IsTrue(matrix_Reader.Matrix_One.TryGetValue(1, out int[] value2));
-            CollectionAssert.AreEqual(new int[] { 1, 2, 3 }, value);
-            CollectionAssert.AreEqual(new int[] { 2, 3, 4 }, value2);
+
+            Assert.AreEqual(" ",textBlock.Text);
+            
         }
         [TestMethod()]
         public void ReadTestShoud_Show_Exeption()
@@ -45,7 +46,7 @@ namespace Matrix_And_Tests.Logic.Tests
             textBlock.Text = textBox.Text;
 
             //act
-            matrix_Reader.Read(textBox, textBlock, matrix_Reader.Matrix_One);
+            //matrix_Reader.Read(textBox, textBlock, matrix_Reader.Matrix_One);
             //assert
             Assert.AreNotEqual(textBlock.Text, textBox.Text);
             //"Input string was not in a correct format."

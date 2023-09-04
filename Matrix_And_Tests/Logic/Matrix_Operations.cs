@@ -12,44 +12,29 @@ namespace Matrix_And_Tests
     /// <summary>
     /// Dont Forget to Change to Internal
     /// </summary>
-    public class Matrix_Operations
+    internal class Matrix_Operations
     {
         Matrix_Reader reader;
 
-        private Dictionary<int, int[]> matrix_Result = new Dictionary<int, int[]>();
-        public Dictionary<int, int[]> Matrix_Result { get => matrix_Result; set => matrix_Result = value; }
+        int[,] matrix_Result;
+       
         public Matrix_Operations(Matrix_Reader reader)
         {
             this.reader = reader;
         }
 
        public bool isEqual;
+
+        public int[,] Matrix_Result { get => matrix_Result; set => matrix_Result = value; }
+
         // Dont forget to change for private after tests
-        public void Compare(TextBlock text)
+        void Compare(TextBlock text)
         {
            
-            if (reader.Matrix_One.Keys.Count == reader.Matrix_Two.Keys.Count)
+            if (reader.Matrix_One.GetLength(0) == reader.Matrix_Two.GetLength(0) && reader.Matrix_One.GetLength(1) == reader.Matrix_Two.GetLength(1))
             {
-                for (int i = 0; i < reader.Matrix_One.Keys.Count; i++)
-                {
-                    int[] o;
-                    int[] s;
-                    int d = reader.Matrix_One.Values.Count;
-                    reader.Matrix_One.TryGetValue(i, out o);
-                    reader.Matrix_Two.TryGetValue(i, out s);
-
-                    if (s.Length != o.Length)
-                    {
-                        isEqual = false;
-                        text.Text = "Матрицы различны по длине";
-                        break;
-                    }
-                    else
-                    {
-                        text.Text = "Матрицы равны по длине";
-                        isEqual = true;
-                    }
-                }
+                text.Text = "Матрицы равны";
+                isEqual = true;
             }
             else
             {
@@ -57,31 +42,32 @@ namespace Matrix_And_Tests
                 isEqual = false;
             }
             
-           
         }
-
 
         public void Matrix_Sum(TextBlock log)
         {
             Compare(log);
             if (isEqual)
             {
-                for (int i = 0; i < reader.Matrix_One.Keys.Count; i++)
+                int rows = reader.Matrix_One.GetLength(0);
+                int cols = reader.Matrix_One.GetLength(1);
+                matrix_Result = new int[rows, cols];
+                for (int i = 0; i < rows; i++)
                 {
-                    int[] one;
-                    int[] sec;
-                    reader.Matrix_One.TryGetValue(i, out one);
-                    reader.Matrix_Two.TryGetValue(i, out sec);
-                    int[] result = new int[one.Length];
-                    for (int j = 0; j < one.Length; j++)
+                    for (int j = 0; j < cols; j++)
                     {
-                        result[j] = one[j] + sec[j];
+                        matrix_Result[i, j] = reader.Matrix_One[i,j] + reader.Matrix_Two[i,j];
                     }
-                    matrix_Result.Add(i,result);
                 }
-                foreach (var item in matrix_Result.Values)
+                //выводим результат
+
+                for (int i = 0; i < rows; i++)
                 {
-                    log.Text += Environment.NewLine + string.Join(",", item);
+                    log.Text += Environment.NewLine;
+                    for (int j = 0; j < cols; j++)
+                    {
+                        log.Text += (matrix_Result[i,j] + " ");
+                    }
                 }
             }
         }
@@ -90,22 +76,25 @@ namespace Matrix_And_Tests
             Compare(log);
             if (isEqual)
             {
-                for (int i = 0; i < reader.Matrix_One.Keys.Count; i++)
+                int rows = reader.Matrix_One.GetLength(0);
+                int cols = reader.Matrix_One.GetLength(1);
+                matrix_Result = new int[rows, cols];
+                for (int i = 0; i < rows; i++)
                 {
-                    int[] one;
-                    int[] sec;
-                    reader.Matrix_One.TryGetValue(i, out one);
-                    reader.Matrix_Two.TryGetValue(i, out sec);
-                    int[] result = new int[one.Length];
-                    for (int j = 0; j < one.Length; j++)
+                    for (int j = 0; j < cols; j++)
                     {
-                        result[j] = one[j] - sec[j];
+                        matrix_Result[i, j] = reader.Matrix_One[i, j] - reader.Matrix_Two[i, j];
                     }
-                    matrix_Result.Add(i, result);
                 }
-                foreach (var item in matrix_Result.Values)
+                //выводим результат
+
+                for (int i = 0; i < rows; i++)
                 {
-                    log.Text += Environment.NewLine + string.Join(",", item);
+                    log.Text += Environment.NewLine;
+                    for (int j = 0; j < cols; j++)
+                    {
+                        log.Text += (matrix_Result[i, j] + " ");
+                    }
                 }
             }
         }
@@ -114,31 +103,34 @@ namespace Matrix_And_Tests
             Compare(log);
             if (isEqual)
             {
-                for (int i = 0; i < reader.Matrix_One.Keys.Count; i++)
+                int rows = reader.Matrix_One.GetLength(0);
+                int cols = reader.Matrix_One.GetLength(1);
+                matrix_Result = new int[rows, cols];
+                for (int i = 0; i < rows; i++)
                 {
-                    int[] one;
-                    int[] sec;
-                    reader.Matrix_One.TryGetValue(i, out one);
-                    reader.Matrix_Two.TryGetValue(i, out sec);
-                    int[] result = new int[one.Length];
-                    for (int j = 0; j < one.Length; j++)
+                    for (int j = 0; j < cols; j++)
                     {
-                        result[j] = one[j] * sec[j];
+                        matrix_Result[i, j] = reader.Matrix_One[i, j] * reader.Matrix_Two[i, j];
                     }
-                    matrix_Result.Add(i, result);
                 }
-                foreach (var item in matrix_Result.Values)
+                //выводим результат
+
+                for (int i = 0; i < rows; i++)
                 {
-                    log.Text += Environment.NewLine+ string.Join(",", item) ;
+                    log.Text += Environment.NewLine;
+                    for (int j = 0; j < cols; j++)
+                    {
+                        log.Text += (matrix_Result[i, j] + " ");
+                    }
                 }
             }
         }
 
-        public void Clear()
+        public void Clear(Matrix_Reader reader)
         {
-            reader.Matrix_One.Clear();
-            reader.Matrix_Two.Clear();
-            matrix_Result.Clear();
+            reader.matrix_One = new int[0, 0];
+            reader.matrix_Two = new int[0, 0];
+            Matrix_Result = new int[0, 0];
         }
     }
 }

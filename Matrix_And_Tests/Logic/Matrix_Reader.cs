@@ -1,55 +1,57 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Matrix_And_Tests.Logic
 {
     // не забыть поменять уровень доступа  класса
     public class Matrix_Reader
     {
-        private Dictionary<int, int[]> matrix_One = new Dictionary<int, int[]>();
-        private Dictionary<int, int[]> matrix_Two = new Dictionary<int, int[]>();
+        public int[,] matrix_One;
+        public int[,] matrix_Two;
 
-        public Dictionary<int, int[]> Matrix_One { get => matrix_One; set => matrix_One = value; }
-        public Dictionary<int, int[]> Matrix_Two { get => matrix_Two; set => matrix_Two = value; }
+        public int[,] Matrix_Two { get => matrix_Two; }
+        public int[,] Matrix_One { get => matrix_One; }
 
-        public void Read(TextBox text, TextBlock log, Dictionary<int, int[]> dic)
+        public void Read(TextBox text, TextBlock log, ref int[,] mat)
         {
             try
             {
-                //lines Это мы раделили строки между собой
-                string[] lines = text.Text.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+                string[] rows = text.Text.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+                string[] col = rows[0].Split(',');
 
-                for (int i = 0; i < lines.Length; i++)
+                int[,] result = new int[rows.Length,col.Length];
+                
+                for (int i = 0; i < rows.Length; i++)
                 {
-
-                    // str это мы разобрали отдельную строку
-                    string[] str = lines[i].Split(',');
-                    int[] numbers = new int[str.Length];
-
+                    string[] str = rows[i].Split(',');
                     for (int j = 0; j < str.Length; j++)
                     {
-                        numbers[j] = int.Parse(str[j]);
+                        result[i, j] = int.Parse(str[j]);
                     }
-                    dic.Add(i, numbers);
+                }
+                mat = new int[rows.Length,col.Length];
+                mat = result;
+                for (int i = 0; i < mat.GetLength(0); i++)
+                {
+                    for (int j = 0; j < mat.GetLength(1); j++)
+                    {
+                        log.Text+=(mat[i, j] + " ");
+                    }
+                    log.Text+=Environment.NewLine;
                 }
 
             }
             catch(Exception ex)
             {
                 log.Text=ex.Message;
+                
             }
-            int[,] matrix = new int[,] 
-            {
-                    {1, -2, 3},
-                    {-4, 5, 6},
-                     {7, 8, -9},
-                     {9, 10, 11},
-                     {2,3,4},
-            };
         }
     }
 }

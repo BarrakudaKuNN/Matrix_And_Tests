@@ -32,26 +32,26 @@ namespace Matrix_And_Tests
 
         private void Button_Plus_Click(object sender, RoutedEventArgs e)
         {
-            reader.Read(TextBox_M1, Text_Block_Error, reader.Matrix_One);
-            reader.Read(TextBox_M2, Text_Block_Error, reader.Matrix_Two);
+            reader.Read(TextBox_M1, Text_Block_Error, ref reader.matrix_One);
+            reader.Read(TextBox_M2, Text_Block_Error, ref reader.matrix_Two);
             operations.Matrix_Sum(Text_Block_Error);
-            operations.Clear();
+            operations.Clear(reader);
         }
 
         private void Button_Minus_Click(object sender, RoutedEventArgs e)
         {
-            reader.Read(TextBox_M1, Text_Block_Error, reader.Matrix_One);
-            reader.Read(TextBox_M2, Text_Block_Error, reader.Matrix_Two);
+            reader.Read(TextBox_M1, Text_Block_Error, ref reader.matrix_One);
+            reader.Read(TextBox_M2, Text_Block_Error, ref reader.matrix_Two);
             operations.Matrix_Distinct(Text_Block_Error);
-            operations.Clear();
+            operations.Clear(reader);
         }
 
         private void Button_Multy_Click(object sender, RoutedEventArgs e)
         {
-            reader.Read(TextBox_M1, Text_Block_Error, reader.Matrix_One);
-            reader.Read(TextBox_M2, Text_Block_Error, reader.Matrix_Two);
+            reader.Read(TextBox_M1, Text_Block_Error, ref reader.matrix_One);
+            reader.Read(TextBox_M2, Text_Block_Error, ref reader.matrix_Two);
             operations.Matrix_Mult(Text_Block_Error);
-            operations.Clear();
+            operations.Clear(reader);
         }
     }
 }
