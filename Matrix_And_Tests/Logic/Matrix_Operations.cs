@@ -9,7 +9,10 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace Matrix_And_Tests
 {
-    internal class Matrix_Operations
+    /// <summary>
+    /// Dont Forget to Change to Internal
+    /// </summary>
+    public class Matrix_Operations
     {
         Matrix_Reader reader;
 
@@ -23,37 +26,38 @@ namespace Matrix_And_Tests
         bool isEqual;
         void Compare(TextBlock text)
         {
-            //foreach (var item in reader.Matrix_One.Keys.Intersect(reader.Matrix_One.Keys))
-            //{
-            //    if (reader.Matrix_One[item].Length != reader.Matrix_Two[item].Length)
-            //    {
-            //        isEqual = false;
-            //        break;
-            //    }
-            //}
-            for (int i = 0; i < reader.Matrix_One.Keys.Count; i++)
+           
+            if (reader.Matrix_One.Keys.Count != reader.Matrix_Two.Count)
             {
-                int[] o;
-                int[] s;
-                int d = reader.Matrix_One.Values.Count;
-                reader.Matrix_One.TryGetValue(i, out o);
-                reader.Matrix_Two.TryGetValue(i, out s);
+                for (int i = 0; i < reader.Matrix_One.Keys.Count; i++)
+                {
+                    int[] o;
+                    int[] s;
+                    int d = reader.Matrix_One.Values.Count;
+                    reader.Matrix_One.TryGetValue(i, out o);
+                    reader.Matrix_Two.TryGetValue(i, out s);
 
-                if (s.Length != o.Length)
-                {
-                    isEqual = false;
-                    text.Text = "Матрицы различны по длине";
-                    break;
-                }
-                else
-                {
-                    text.Text = "Матрицы равны по длине";
-                    isEqual = true;
+                    if (s.Length != o.Length)
+                    {
+                        isEqual = false;
+                        text.Text = "Матрицы различны по длине";
+                        break;
+                    }
+                    else
+                    {
+                        text.Text = "Матрицы равны по длине";
+                        isEqual = true;
+                    }
                 }
             }
+            else
+            {
+                text.Text = "Матрицы не равны";
+                isEqual = false;
+            }
+            
            
         }
-
 
 
         public void Matrix_Sum(TextBlock log)
